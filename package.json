@@ -7,6 +7,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "plasmid": "yarn add --dev git+https://github.com/janzheng/plasmid.git",
+    "commit": "git add . -A ; git commit ; git push origin main ",
     "ln-plasmid": "ln -s ../../../plasmid/",
     "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch"
@@ -85,5 +86,8 @@
     "tailwind-variants": "^0.1.14",
     "xstate": "^4.38.2",
     "zod": "^3.22.4"
+  },
+  "publishConfig": {
+    "@janzheng:registry": "https://npm.pkg.github.com"
   }
 }

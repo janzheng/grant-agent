@@ -5,6 +5,11 @@
 
 */
 
+export const config = {
+  runtime: 'edge',
+};
+
+
 import { prompt } from '$lib/utils/claude'
 import { hjson } from '$plasmid/utils/sveltekit-helpers'
 import { json, error } from '@sveltejs/kit';

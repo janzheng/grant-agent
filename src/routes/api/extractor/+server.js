@@ -15,6 +15,11 @@ import { json } from '@sveltejs/kit';
 
 import { getMdFromPdf, getHtmlFromWord } from './';
 
+export const config = {
+  runtime: 'edge',
+};
+
+
 // 
 // send a form with file and type is sent as a POST to this endpoint
 // gets the text!
