@@ -1,6 +1,10 @@
+
+@import "$plasmid/themes/tw";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
  
 @layer base {
   :root {
@@ -75,4 +79,59 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+
+.Content {
+  @apply container max-w-3xl;
+}
+
+
+h1 {
+  @apply scroll-m-20 text-4xl font-bold tracking-tight;
+}
+h2 {
+  @apply scroll-m-20 text-2xl font-bold tracking-tight;
+}
+h3 {
+  @apply scroll-m-20 text-xl font-normal;
+}
+
+p {
+  @apply inline-block my-2 text-lg leading-8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+  PILE O CRAP
+
+*/
+
+
+// upload block
+.Insert {
+  svg {
+    display: inline - block !important;
+  }
+
+}
+
+.Convo-title p {
+  display: inline !important;
 }

@@ -1,5 +1,4 @@
-<script>
-  import { marked } from "marked"
+<script lang="ts">
   import { Textarea } from "$lib/components/ui/textarea";
   import { Button } from "$lib/components/ui/button";
   import * as Card from "$lib/components/ui/card";
@@ -7,39 +6,60 @@
   import { Input } from "$lib/components/ui/input";
   import { Label } from "$lib/components/ui/label";
 
-	import { fade } from 'svelte/transition';
-  import { grantStore } from "$lib/stores"
-   
-  import Intro from "$lib/components/Intro.svelte";
-  import Insert from "$lib/components/Insert.svelte";
-  import LabDetails from "$lib/components/LabDetails.svelte";
+  const frameworks = [
+    {
+      value: "sveltekit",
+      label: "SvelteKit"
+    },
+    {
+      value: "next",
+      label: "Next.js"
+    },
+    {
+      value: "astro",
+      label: "Astro"
+    },
+    {
+      value: "nuxt",
+      label: "Nuxt.js"
+    }
+  ];
 
-  import { grantData, userData } from '$lib/stores';
 
-
-  // $: {
-    console.log('[Page Datalog]', $grantData, $userData);
-  // }
+  import { z } from "zod";
+  export const formSchema = z.object({
+    username: z.string().min(2).max(50)
+  });
+  import * as Form from "$lib/components/ui/form";
+  import { superValidate } from "sveltekit-superforms/server";
+  export const load = () => {
+    return {
+      form: superValidate(formSchema)
+    };
+  };
+  export let form;
 
 </script>
 
 
-<div class="Content | my-8">
-  
-  <Intro />
-  <Insert />
+<div class="Content">
 
-  {#if $grantStore.grant}
-    <div class="" transition:fade={{ delay: 250, duration: 300 }} >
-      <LabDetails />
-    </div>
-  {/if}
-  
-
-  <!-- <div class="mb-4">
+  <div class="mb-4">
     <Textarea placeholder="Type your message here." />
-  </div> -->
-<!--   
+  </div>
+  <div class="mb-4">
+    <Form.Root method="POST" {form} schema={formSchema} let:config>
+      <Form.Field {config} name="username">
+        <Form.Item>
+          <Form.Label>Username</Form.Label>
+          <Form.Input />
+          <Form.Description>This is your public display name.</Form.Description>
+          <Form.Validation />
+        </Form.Item>
+      </Form.Field>
+      <Form.Button>Submit</Form.Button>
+    </Form.Root>
+  </div>
   <div class="mb-4">
     <Card.Root class="w-[350px]">
       <Card.Header>
@@ -76,5 +96,5 @@
         <Button>Deploy</Button>
       </Card.Footer>
     </Card.Root>
-  </div> -->
+  </div>
 </div>
