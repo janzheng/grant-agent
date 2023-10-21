@@ -13,8 +13,8 @@ export const config = {
 import { prompt } from '$lib/utils/claude'
 import { hjson } from '$plasmid/utils/sveltekit-helpers'
 import { json, error } from '@sveltejs/kit';
-// import { fQuery } from '$plasmid/modules/llm/fQuery.js'
-import { fQuery } from 'plasmid/modules/llm/fQuery.js'
+// import { fQuery } from '$plasmid/modules/llm/fquery.js'
+import { fQuery } from 'plasmid/modules/llm/fquery.js'
 
 
 // https://chat.openai.com/c/67dec763-8be5-4df8-8ec4-611a86c3ee89
