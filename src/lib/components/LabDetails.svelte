@@ -32,7 +32,7 @@
 
 <div class="Converse | mt-8">
   <div class="Commandbar | mb-8">
-    <h2 class="mb-2">Let’s get down to business...</h2>
+    <h2 class="mb-2">Tell me a bit about yourself...</h2>
     <button class="Btn-outline" on:click={()=>{loadMoreQuestions()}}>
       🤵🏼‍♂️🎲 Ask More Hard Questions!
     </button>

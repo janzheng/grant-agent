@@ -7,8 +7,8 @@ export const userStore = persisted("userStore", {
   userData: {},
   conversations: [
     {
-      q: "Tell me about your group and your work!",
-      desc: "Please give me some context ",
+      q: "Tell me about your work",
+      desc: "What is your group like, and what kind of work do you do?",
       messages: [],
       data: {},
       examples: [

@@ -7,7 +7,7 @@
 
 <div class="Intro |">
   {@html marked(`# Hi! My name is Hugh 🤵🏼‍♂️👋
-and together, I will help you land your Dream Grant™️.
+and together, we will land your Dream Grant™️.
 `)}
 </div>
 

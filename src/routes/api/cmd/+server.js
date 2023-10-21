@@ -13,7 +13,8 @@ export const config = {
 import { prompt } from '$lib/utils/claude'
 import { hjson } from '$plasmid/utils/sveltekit-helpers'
 import { json, error } from '@sveltejs/kit';
-import { fQuery } from '$plasmid/modules/llm/fQuery.js'
+// import { fQuery } from '$plasmid/modules/llm/fQuery.js'
+import { fQuery } from 'plasmid/modules/llm/fQuery.js'
 
 
 export async function POST({ request, url }) {
