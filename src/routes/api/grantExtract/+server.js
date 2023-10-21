@@ -180,7 +180,10 @@ export async function POST({ request, url }) {
     // get html of the details
 
     let htmlPrompt = `Given this data, please give me a airy TailwindCSS report; if using tables please restrict the number of columns but use rows freely, using text-sm and plenty of padding; avoid using grays, wrapped in a <div></div>; prefer using table-auto, thin 1px lines, light drop shadows; make it look like Cloudflare, Vercel, or Linear
-Create a report of ALL of the data found here: """${JSON.stringify(jsonObject)}""". Add each item from the data on its own row. Please don't output <head> or <title> or other parts of html.
+Create a report of ALL of the data found here: """${JSON.stringify(jsonObject)}""". Add each item from the data on its own row.
+- Please don't output <head> or <title> or other parts of html.
+- Please don't condense your response; please output in full. Don't "Continue with other data in a similar fashion" but output EVERY value from the data in your response.
+- Do not explain your output. Only output HTML. Your last token should be </div>
     `
 
     let html = await fQuery().prompt(htmlPrompt, {model: "gpt-4"})

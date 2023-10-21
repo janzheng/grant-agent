@@ -103,6 +103,7 @@ export const getQuestions = async (input, config) => {
           - Ask hard questions
           - Don't ask questions that already have been answered
           - Please only return JSON output
+          - Any examples you output should have to do with biobanking, phage and microbes, and biobank databas / datastore for genomics and tracking samples
           - Please use this format in your responses:
           [
             {
@@ -116,6 +117,7 @@ export const getQuestions = async (input, config) => {
               ]
             },
           ]
+
   `,
           model: "gpt-4",
           addons: ['json']

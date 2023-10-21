@@ -1,5 +1,8 @@
 
 <script>
+
+  export let demoMode = false
+
   import { marked } from "marked"
   import { md2json } from "$lib/utils/md2json.js"
   import { JsonView } from '@zerodevx/svelte-json-view'
@@ -71,20 +74,21 @@
 
 
 
-      // TODO: DELETE TESTING SHORTCUT
-      // await extractGrantDetails({
-      //   text: $grantStore.grant.json
-      // });
-      $grantStore.grant.details = grantDetailsObj
-      $grantStore.grant.html = grantHtml
-      autofillMessage = `
-      ✅ Extracting: ${fileUpload?.name || "text"}
-      <br>
-      ✅ Processing grant details...
-      <br>🤵🏼‍♂️ <b>Grant details extracted!
-        `
-      isAutofillLoading = false
-
+      if(demoMode) {
+        $grantStore.grant.details = grantDetailsObj
+        $grantStore.grant.html = grantHtml
+        autofillMessage = `
+        ✅ Extracting: ${fileUpload?.name || "text"}
+        <br>
+        ✅ Processing grant details...
+        <br>🤵🏼‍♂️ <b>Grant details extracted!
+          `
+        isAutofillLoading = false
+      } else {
+        await extractGrantDetails({
+          text: $grantStore.grant.json
+        });
+      }
       // autofillMessage = 'Text processed ...'
     } catch(e) {
       console.log('error :::', e)
@@ -102,7 +106,7 @@
 
     let fetchUrl = "/api/grantExtract"
 
-    console.log('extractGrantDetails URL:', fetchUrl)
+    console.log('extractGrantDetails URL:', fetchUrl, obj)
     let resExtract = await fetch(fetchUrl, {
       method: 'POST',
       body: JSON.stringify({ ...obj})
@@ -160,37 +164,36 @@
               ✅ Extracting: ${fileUpload?.name || "text"}
               <br>
               <svg class="animate-spin h-5 w-5 text-white !text-neutral-400 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processing grant details...`
-
-
-              // extractGrantDetails({
-              //   extract:"metadata, body",
-              //   text: grantText
-              // })
-
-
-              // TODO: DELETE TESTING SHORTCUT
-              $grantStore = {
-                grant: {
-                  md: grantText,
-                  json: md2json(grantText)
+              
+              if(demoMode) {
+                $grantStore = {
+                  grant: {
+                    md: grantText,
+                    json: md2json(grantText)
+                  }
                 }
+                $grantStore.grant.details = grantDetailsObj
+                $grantStore.grant.html = grantHtml
+                autofillMessage = `
+                ✅ Extracting: ${fileUpload?.name || "text"}
+                <br>
+                ✅ Processing grant details...
+                <br>🤵🏼‍♂️ <b>Grant details extracted!
+                  `
+                isAutofillLoading = false
+              } else {
+                extractGrantDetails({
+                  extract:"metadata, body",
+                  text: grantText
+                })
               }
-              $grantStore.grant.details = grantDetailsObj
-              $grantStore.grant.html = grantHtml
-              autofillMessage = `
-              ✅ Extracting: ${fileUpload?.name || "text"}
-              <br>
-              ✅ Processing grant details...
-              <br>🤵🏼‍♂️ <b>Grant details extracted!
-                `
-              isAutofillLoading = false
           }}></textarea>
         </div>
       {/if}
     </div> 
 
     {#if autofillMessage}
-      <div class="Insert-text-message Card-outline --card-outline-evergreen p-1 pl-4 mb-0">
+      <div class="Insert-text-message Card-outline --card-outline-evergreen p-1 pl-4 mt-2 mb-0">
         {@html autofillMessage}
       </div>
     {/if}

@@ -51,7 +51,7 @@
 
 
 
-{#if $userStore}
+{#if Object.keys($userStore?.userData).length>0}
   <div class="UserDetails | mt-8">
     <h2>Here‘s what you’ve told me so far:</h2>
     <JsonView json={$userStore} depth={1} />

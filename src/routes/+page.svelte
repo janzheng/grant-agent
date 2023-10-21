@@ -29,7 +29,7 @@
   <Intro />
   <Insert />
 
-  {#if $grantStore.grant}
+  {#if $grantStore.grant?.details}
     <div class="" transition:fade={{ delay: 250, duration: 300 }} >
       <LabDetails />
     </div>
